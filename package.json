@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jimp": "^0.6.0"
+    "jimp": "^0.6.0",
+    "wallpaper": "^4.2.0"
   }
 }
