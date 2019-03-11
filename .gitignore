@@ -2,3 +2,5 @@ node_modules
 raw.psd
 .DS_Store
 .vscode
+
+[0-9]*.png

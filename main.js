@@ -1,4 +1,5 @@
 const Jimp = require('jimp');
+const wallpaper = require('wallpaper');
 const { list } = require('./mocks')
 
 const xList = [1950, 2120, 2510, 2635, 2760, 2900, 3100]
@@ -20,8 +21,12 @@ const createTableFromTemplate = async (teamDetails) => {
         return await writeRowForEachTeam(image, font, xList, 475 + differenceBetweenRows * index, eachTeam)
     })
     await Promise.all(waitForImageToWrite)
-    console.log('writing final file');
+    console.log('writing final file- ', file);
     image.write(file, () => { })
 }
 
-createTableFromTemplate(list)
+(async () => {
+    await createTableFromTemplate(list)
+    await wallpaper.set(`./${file}`);
+    console.log('set ', file, ' as new wallpaper');
+})();
