@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "jimp": "^0.6.0",
-    "wallpaper": "^4.2.0"
+    "wallpaper": "^4.2.0",
+    "x-ray": "^2.3.3"
   }
 }

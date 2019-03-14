@@ -42,7 +42,7 @@ const list = [
         runrate: '0.00',
         points: '0',
     },{
-        name: 'DD',
+        name: 'DC',
         played: '0',
         won: '0',
         lost: '0',
