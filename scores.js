@@ -10,8 +10,7 @@ const getUpdatedScores = async () => {
             team: x('tr', ['td'])
         }])((err, content) => {
             if (err) {
-                console.log('Err', err);
-                reject(err);
+                return reject(err);
             }
             finalResponse = content
                 .filter((obj, index) => index !== 0)

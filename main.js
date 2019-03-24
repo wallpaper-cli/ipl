@@ -2,18 +2,25 @@ const Jimp = require('jimp');
 const { exec } = require('child_process');
 const wallpaper = require('wallpaper');
 const getScores = require('./scores')
-// const { list } = require('./mocks')
+const mocks = require('./mocks')
 
 const removeExistingFile = 'rm -rf [0-9]*.png';
 const xList = [1950, 2100, 2480, 2620, 2750, 2860, 3100]
 const file = `${new Date().getTime()}.png`;
 
 const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
-    const logo = await Jimp.read(`./Assets/Logos/${teamInfo.name.toLowerCase()}.png`)
-    image.composite(logo.resize(Jimp.AUTO, 80), x[0], y)
-    Object.keys(teamInfo).map((eachColum, index) => {
-        return image.print(font, x[index + 1], y, teamInfo[eachColum])
-    })
+    try {
+        const logo = await Jimp.read(`./Assets/Logos/${teamInfo.name.toLowerCase()}.png`)
+        image.composite(logo.resize(Jimp.AUTO, 80), x[0], y)
+        Object.keys(teamInfo).map((eachColum, index) => {
+            return image.print(font, x[index + 1], y, teamInfo[eachColum])
+        })
+    } catch (error) {
+        console.error(error)
+        Object.keys(teamInfo).map((eachColum, index) => {
+            return image.print(font, x[index + 1], y, teamInfo[eachColum])
+        })
+    }
 }
 
 const createTableFromTemplate = async (teamDetails) => {
@@ -36,9 +43,15 @@ const createTableFromTemplate = async (teamDetails) => {
             console.log('Error: ', err);
         }
     });
-    const list = await getScores()
-    console.log(list);
+    let list;
+    try {
+        list = await getScores()
+    } catch (err) {
+        console.error(err)
+        list = mocks.list
+    }
+    // console.log(list);
     await createTableFromTemplate(list)
     await wallpaper.set(`./${file}`);
-    console.log('set ', file, ' as new wallpaper');
+    console.log('Set ', file, ' as new wallpaper');
 })();
