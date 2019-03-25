@@ -6,4 +6,6 @@ This app sets the Wallpaper of the system from fetching data from 'https://www.i
 ### Steps to run
 * After every match run `npm start` to update your desktop background.
 
-#### Note- If you don't have internet connection then the table will show 0 for all values.
+#### Note 
+#### 1. You need to have node version 8 or above installed in your system.
+#### 2. If you don't have internet connection then the table will show 0 for all values.
