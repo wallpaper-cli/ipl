@@ -18,7 +18,7 @@ const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
             return image.print(font, x[index + 1], y, teamInfo[eachColum])
         })
     } catch (error) {
-        console.error(error)
+        // console.error(error)
         Object.keys(teamInfo).map((eachColum, index) => {
             return image.print(font, x[index + 1], y, teamInfo[eachColum])
         })
