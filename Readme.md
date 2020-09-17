@@ -1,4 +1,4 @@
-This app sets the Wallpaper of the system from fetching data from 'https://www.iplt20.com/stats/2019'.
+This app sets the Wallpaper of the system from fetching data from 'https://www.iplt20.com/points-table/2020'.
 
 ### Steps to setup 
 * Clone the repo and run `npm i` to install all the dependencies
