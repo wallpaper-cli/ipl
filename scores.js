@@ -3,7 +3,7 @@ const Constants = require('./constants')
 
 const getUpdatedScores = async () => {
     const x = Xray();
-    const regex = /[A-Z]{2,4}$/g;
+    const regex = /[A-Z]{2,4}\n/g;
     let finalResponse = [];
     return new Promise((resolve, reject) => {
         x(Constants.webLink, '.standings-table tr', [{
@@ -16,7 +16,7 @@ const getUpdatedScores = async () => {
                 .filter((obj, index) => index !== 0)
                 .map(({ team }) => {
                     return ({
-                        name: team[1].match(regex)[0],
+                        name: team[1].match(regex)[0].trim(),
                         played: team[2],
                         won: team[3],
                         lost: team[4],
