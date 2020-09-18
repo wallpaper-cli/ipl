@@ -1,4 +1,5 @@
-This app sets the Wallpaper of the system to the Sample image available below. We fetch the data from https://www.iplt20.com/points-table/2020.
+This app sets the Wallpaper of the system to the Sample image available below.
+We fetch the data from https://www.iplt20.com/points-table/2020.
 
 ### Steps to setup 
 * Install npm package: `npm i ipl-wallpaper -g`
