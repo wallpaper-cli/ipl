@@ -12,7 +12,7 @@ const file = `${new Date().getTime()}.png`;
 
 const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
     try {
-        const logo = await Jimp.read(`./Assets/Logos/${teamInfo.name.toLowerCase()}.png`)
+        const logo = await Jimp.read(`Assets/Logos/${teamInfo.name.toLowerCase()}.png`)
         image.composite(logo.resize(Jimp.AUTO, 80), x[0], y)
         Object.keys(teamInfo).map((eachColum, index) => {
             return image.print(font, x[index + 1], y, teamInfo[eachColum])
@@ -27,7 +27,7 @@ const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
 
 const createTableFromTemplate = async (teamDetails) => {
     const differenceBetweenRows = 160
-    let image = await Jimp.read('./Assets/Template/template.png')
+    let image = await Jimp.read('Assets/Template/template.png')
     const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE)
     const waitForImageToWrite = teamDetails.map(async (eachTeam, index) => {
         return await writeRowForEachTeam(image, font, xList, 475 + differenceBetweenRows * index, eachTeam)
