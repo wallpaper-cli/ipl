@@ -1,6 +1,6 @@
 {
   "name": "ipl-wallpaper",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "index.js",
   "bin": "./index.js",
@@ -13,6 +13,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js"
   },
+  "keywords": [
+    "ipl",
+    "wallpaper",
+    "cricket",
+    "cli",
+    "standings"
+  ],
   "author": "anmol5varma",
   "license": "ISC",
   "dependencies": {
