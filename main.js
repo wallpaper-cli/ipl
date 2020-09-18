@@ -30,7 +30,7 @@ const createTableFromTemplate = async (teamDetails) => {
     let image = await Jimp.read(`${__dirname}/Assets/Template/template.png`)
     const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE)
     const waitForImageToWrite = teamDetails.map(async (eachTeam, index) => {
-        return await writeRowForEachTeam(image, font, xList, 475 + differenceBetweenRows * index, eachTeam)
+        return await writeRowForEachTeam(image, font, xList, 312 + differenceBetweenRows * index, eachTeam)
     })
     await Promise.all(waitForImageToWrite)
     // console.log('writing final file- ', file);
