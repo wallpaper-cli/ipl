@@ -1,13 +1,19 @@
 {
-  "name": "ipl_2019",
-  "version": "1.0.0",
+  "name": "ipl-wallpaper",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "bin": "./index.js",
+  "homepage": "https://github.com/wallpaper-cli/ipl",
+  "repository": "git@github.com:wallpaper-cli/ipl.git",
+  "bugs": {
+    "url": "https://github.com/wallpaper-cli/ipl/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js"
   },
-  "author": "",
+  "author": "anmol5varma",
   "license": "ISC",
   "dependencies": {
     "jimp": "^0.16.1",
