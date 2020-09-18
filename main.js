@@ -33,14 +33,14 @@ const createTableFromTemplate = async (teamDetails) => {
         return await writeRowForEachTeam(image, font, xList, 475 + differenceBetweenRows * index, eachTeam)
     })
     await Promise.all(waitForImageToWrite)
-    console.log('writing final file- ', file);
+    // console.log('writing final file- ', file);
     image.write(file, () => { })
 }
 
 (async () => {
     exec(removeExistingFile, (err) => {
         if (!err) {
-            console.log('File deleted');
+            console.log("\x1b[33m", 'Fetching data from ipl servers');
         } else {
             console.log('Error: ', err);
         }
@@ -53,7 +53,8 @@ const createTableFromTemplate = async (teamDetails) => {
         list = mocks.list
     }
     // console.log(list);
+    console.log("\x1b[33m", 'Updating your wallpaper');
     await createTableFromTemplate(list)
     await wallpaper.set(`./${file}`);
-    console.log('Set ', file, ' as new wallpaper');
+    console.log("\x1b[32m", 'Wallpaper updated successfully');
 })();
