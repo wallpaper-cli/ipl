@@ -38,6 +38,8 @@ const createTableFromTemplate = async (teamDetails) => {
 }
 
 (async () => {
+    console.log(`${__dirname}`);
+    console.log(`rm -rf ${__dirname}/[0-9]*.png`);
     exec(removeExistingFile, (err) => {
         if (!err) {
             console.log("\x1b[33m", 'Fetching data from ipl servers');
@@ -56,5 +58,6 @@ const createTableFromTemplate = async (teamDetails) => {
     console.log("\x1b[33m", 'Updating your wallpaper');
     await createTableFromTemplate(list)
     await wallpaper.set(`${__dirname}/${file}`);
+    console.log(`${__dirname}/${file}`);
     console.log("\x1b[32m", 'Wallpaper updated successfully');
 })();
