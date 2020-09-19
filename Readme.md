@@ -1,4 +1,4 @@
-This app sets the Wallpaper of the system to the Sample image available below.
+This npm-cli package sets the wallpaper of the system to the current IPL points table. A sample image available below.
 We fetch the data from https://www.iplt20.com/points-table/2020.
 
 ### Steps to setup 
