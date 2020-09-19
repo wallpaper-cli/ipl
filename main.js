@@ -5,8 +5,8 @@ const getScores = require('./scores')
 const mocks = require('./mocks')
 
 const removeExistingFile = process.platform === 'win32'
-    ? 'del *.png'
-    : 'rm -rf [0-9]*.png';
+    ? `del ${__dirname}/[0-9]*.png`
+    : `rm -rf ${__dirname}/[0-9]*.png`;
 const xList = [1950, 2100, 2480, 2620, 2750, 2860, 3100]
 const file = `${new Date().getTime()}.png`;
 
@@ -55,6 +55,6 @@ const createTableFromTemplate = async (teamDetails) => {
     // console.log(list);
     console.log("\x1b[33m", 'Updating your wallpaper');
     await createTableFromTemplate(list)
-    await wallpaper.set(`./${file}`);
+    await wallpaper.set(`${__dirname}/${file}`);
     console.log("\x1b[32m", 'Wallpaper updated successfully');
 })();
