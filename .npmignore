@@ -1,5 +1,5 @@
 node_modules
-raw.psd
+*.psd
 .DS_Store
 .vscode
 Sample.png

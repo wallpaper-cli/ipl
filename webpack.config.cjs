@@ -1,5 +1,6 @@
 // webpack.config.js
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require('webpack')
 
 module.exports = {
@@ -18,5 +19,11 @@ module.exports = {
   },
   plugins: [
     new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'Assets', to: 'Assets' }, // Copy assets folder to the output directory
+        { from: 'node_modules/@jimp/plugin-print/fonts', to: 'fonts' }, // Copy assets folder to the output directory
+      ],
+    }),
   ],
 };
