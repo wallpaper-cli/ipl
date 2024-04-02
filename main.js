@@ -1,24 +1,37 @@
 const Jimp = require('jimp');
+const axios = require('axios');
 const { exec } = require('child_process');
 const wallpaper = require('wallpaper');
 const getScores = require('./scores')
 const mocks = require('./mocks')
 
+const fetchLogo = async (team) => {
+    return axios({
+        method: 'get',
+        url: `https://scores.iplt20.com/ipl/teamlogos/${team.toUpperCase()}.png?v=2`,
+        responseType: 'arraybuffer'
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+}
+
 const removeExistingFile = process.platform === 'win32'
     ? `del ${__dirname}/[0-9]*.png`
     : `rm -rf ${__dirname}/[0-9]*.png`;
-const xList = [1950, 2100, 2480, 2620, 2750, 2860, 3100]
+const xList = [2000, 2100, 2500, 2635, 2760, 2860, 3100]
 const file = `${new Date().getTime()}.png`;
 
-const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
+const writeRowForEachTeam = async (image, font, x, y, teamInfo, listIndex) => {
     try {
-        const logo = await Jimp.read(`${__dirname}/Assets/Logos/${teamInfo.name.toLowerCase()}.png`)
+        const logoResponse = await fetchLogo(teamInfo.name)
+        const logo = await Jimp.read(logoResponse.data)
         image.composite(logo.resize(Jimp.AUTO, 80), x[0], y)
+        image.print(font, 1883, y, (listIndex+1)+'.')
         Object.keys(teamInfo).map((eachColum, index) => {
             return image.print(font, x[index + 1], y, teamInfo[eachColum])
         })
     } catch (error) {
-        // console.error(error)
         Object.keys(teamInfo).map((eachColum, index) => {
             return image.print(font, x[index + 1], y, teamInfo[eachColum])
         })
@@ -26,11 +39,11 @@ const writeRowForEachTeam = async (image, font, x, y, teamInfo) => {
 }
 
 const createTableFromTemplate = async (teamDetails) => {
-    const differenceBetweenRows = 160
+    const differenceBetweenRows = 143
     let image = await Jimp.read(`${__dirname}/Assets/Template/template.png`)
     const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE)
     const waitForImageToWrite = teamDetails.map(async (eachTeam, index) => {
-        return await writeRowForEachTeam(image, font, xList, 312 + differenceBetweenRows * index, eachTeam)
+        return writeRowForEachTeam(image, font, xList, 230 + differenceBetweenRows * index, eachTeam, index)
     })
     await Promise.all(waitForImageToWrite)
     // console.log('writing final file- ', file);

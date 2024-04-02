@@ -1,31 +1,24 @@
-const Xray = require('x-ray');
+const axios = require('axios')
 const Constants = require('./constants')
 
 const getUpdatedScores = async () => {
-    const x = Xray();
-    const regex = /[A-Z]{2,4}\n/g;
-    let finalResponse = [];
-    return new Promise((resolve, reject) => {
-        x(Constants.webLink, '.standings-table tr', [{
-            team: x('tr', ['td'])
-        }])((err, content) => {
-            if (err) {
-                return reject(err);
-            }
-            finalResponse = content
-                .filter((obj, index) => index !== 0)
-                .map(({ team }) => {
-                    return ({
-                        name: team[1].match(regex)[0].trim(),
-                        played: team[2],
-                        won: team[3],
-                        lost: team[4],
-                        runrate: team[7],
-                        points: team[10]
-                    })
-                })
-            resolve(finalResponse)
-        })
+    return axios({
+        method: 'get',
+        url: Constants.webLink,
     })
+        .then((data) => data.data)
+        .then(data => JSON.parse(data.substring(17, data.length - 2)))
+        .then(teamData => teamData.points.map(team=>({
+            name: team.TeamCode,
+            played: +team.Matches,
+            won: +team.Wins,
+            lost: +team.Loss,
+            runrate: +team.NetRunRate,
+            points: +team.Points
+        })))
+        .catch((error) => {
+            console.log(error);
+        });
 }
+
 module.exports = getUpdatedScores
