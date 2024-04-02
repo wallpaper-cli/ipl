@@ -2,8 +2,10 @@
   "name": "ipl-wallpaper",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "bin": "./index.js",
+  "main": "./dist/index.js",
+  "bin": {
+    "good-ipo": "./dist/bundle.min.cjs"
+  },
   "homepage": "https://github.com/wallpaper-cli/ipl",
   "repository": "git@github.com:wallpaper-cli/ipl.git",
   "bugs": {
